@@ -12,9 +12,7 @@ form.addEventListener('submit', function (event) {
   const delayInput = document.querySelector('[name="delay"]');
   const stateInput = document.querySelector('[name="state"]:checked');
 
-  // Проверяем, что значения delay и state были выбраны
   if (!delayInput.value || !stateInput) {
-    // Выводим сообщение об ошибке и выходим из функции
     iziToast.error({
       title: 'Error',
       message: 'Please select delay and state.',
