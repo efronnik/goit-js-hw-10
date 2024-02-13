@@ -9,12 +9,28 @@ const submitBtn = document.querySelector('[type="submit"]');
 form.addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const delay = Number(document.querySelector('[name="delay"]').value);
-  const state = document.querySelector('[name="state"]:checked');
+  const delayInput = document.querySelector('[name="delay"]');
+  const stateInput = document.querySelector('[name="state"]:checked');
+
+  // Проверяем, что значения delay и state были выбраны
+  if (!delayInput.value || !stateInput) {
+    // Выводим сообщение об ошибке и выходим из функции
+    iziToast.error({
+      title: 'Error',
+      message: 'Please select delay and state.',
+      messageColor: '#FFF',
+      backgroundColor: '#EF4040',
+      position: 'topRight',
+      iconUrl: iconClose,
+    });
+    return;
+  }
+
+  const delay = Number(delayInput.value);
 
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (state.value === 'fulfilled') {
+      if (stateInput.value === 'fulfilled') {
         resolve(delay);
       } else {
         reject(delay);
